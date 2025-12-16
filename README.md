@@ -1,30 +1,25 @@
-# autoclip
-This is a automatic video clip program.
-MVP: Plan to make a program which can input a video to clip different shots
-预计功能 Input a video -> Output slicers
-Day 1: New File folder
-### Setup (recommended)
+## Quick Start
+
 ```bash
+# 1) Setup (recommended)
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-RUN(Generate Timeline)
+# (Optional) check ffmpeg (required for --export)
+ffmpeg -version
 
-source .venv/bin/activate
+# 2) Run (Generate timeline)
 python -m autoclip.main --input examples/input_videos/sample.mp4 --out clips.json
 
-RUN(Export clips)
-
-source .venv/bin/activate
+# 3) Run (Export clips)
 python -m autoclip.main --input examples/input_videos/sample.mp4 --out clips.json --export
 
-
-
-Parameters
-
---threshold: higher = fewer cuts (try 20–45)
-
---sample-fps: higher = more sensitive but slower (try 2–5)
-
---min-clip-sec: filter very short clips (try 1–2)
+# 4) Example with parameters
+python -m autoclip.main \
+  --input examples/input_videos/sample.mp4 \
+  --out clips.json \
+  --export \
+  --threshold 35 \
+  --sample-fps 3 \
+  --min-clip-sec 1.5
